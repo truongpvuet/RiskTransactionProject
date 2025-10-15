@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://github.com/kiegroup/drools/kie-dmn/_828ACE88-9BCD-4065-A6B0-1DFDACD76ADC" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_AB8761EE-7B38-4C8A-B342-7328CA1E3EC7" name="risk-payment-rule-dmn" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://github.com/kiegroup/drools/kie-dmn/_828ACE88-9BCD-4065-A6B0-1DFDACD76ADC">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_3AC49030-B8EA-419C-A958-9A8287643299" name="RISK_ENUM" isCollection="false">
+    <dmn:typeRef>string</dmn:typeRef>
+    <dmn:allowedValues kie:constraintType="enumeration" id="_2DCAAD12-5C8D-4538-B469-71408F4C3D1A">
+      <dmn:text>"HIGH_RISK", "MEDIUM_RISK", "LOW_RISK", "NO_RISK"</dmn:text>
+    </dmn:allowedValues>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_639AC07D-4B46-4B9A-854A-EB12F0A1D746" name="Payment" isCollection="false">
+    <dmn:itemComponent id="_ADFD7E1D-3607-4757-AA68-F2109C474E50" name="tax" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_3DE979B7-C094-45A5-9D24-D266952B0E97" name="fee" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_6FE3B58B-FCF7-46B1-8937-A9BD0CB547A4" name="amount" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_F0555006-AC42-446C-B948-485FD8A35408" name="RiskResponse" isCollection="false">
+    <dmn:itemComponent id="_FC36578F-FB0F-4929-A786-C7EF2E7A6A19" name="status" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_C152D622-D4E9-4A5E-876C-59303794E14A" name="errorCode" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_5E2FD157-37FC-4758-9D3B-C2E06A9D4EF2" name="errorMessage" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:decision id="_0F4C0B5A-BE18-4E9C-9DA5-7494B1834718" name="Net Amount">
+    <dmn:variable id="_452D3875-710F-41D5-8A52-4A59FF020532" name="Net Amount" typeRef="number"/>
+    <dmn:informationRequirement id="_F795EB42-7E5E-4AEE-9E97-85B485530BAA">
+      <dmn:requiredInput href="#_1A4FF386-8622-4B9E-BDB1-A3ACB5780282"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_23373775-E97A-4108-920D-1442B40F2DE6">
+      <dmn:requiredInput href="#_6D551C7E-1BE4-4A46-8A74-25C3A4F1DB44"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_3685FBB8-F411-472F-B1F0-22A4F61CF071">
+      <dmn:requiredInput href="#_562FB23C-ED75-43B4-96E3-00952AC82928"/>
+    </dmn:informationRequirement>
+    <dmn:literalExpression id="_0590E4DC-D07D-4439-A3CC-F0EBAD020A64">
+      <dmn:text>amount - fee - tax</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmn:decision id="_9047FD4B-ACE2-4384-BE09-BA285DCA4218" name="Risk Score">
+    <dmn:variable id="_133315F7-0204-4357-BFF4-0AFB87462673" name="Risk Score" typeRef="RISK_ENUM"/>
+    <dmn:informationRequirement id="_1B19F09B-BA84-4447-99C1-1ED438037B91">
+      <dmn:requiredDecision href="#_0F4C0B5A-BE18-4E9C-9DA5-7494B1834718"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_947E114B-0A13-43FB-A94B-F0A89358A4F2" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_1B32E2FD-2962-4E77-882C-C84866F268C1">
+        <dmn:inputExpression id="_2B317F41-EC92-4C39-83CB-0E5FDDFABD89" typeRef="number">
+          <dmn:text>Net Amount</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_48F77F39-85F7-41FC-875B-4EFAEC39D0D2" typeRef="RISK_ENUM"/>
+      <dmn:rule id="_87DB0809-4FBD-43D2-9BC2-AA2DAD7D78F8">
+        <dmn:inputEntry id="_289CE44D-4193-4316-BB2A-75CCCA71DC52">
+          <dmn:text>&gt;= 2000</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_A374D778-CC68-4D6A-9A64-45E5C43E54D4">
+          <dmn:text>"HIGH_RISK"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_033A1B0F-3018-4663-8004-2DD6AC7BD3AF">
+        <dmn:inputEntry id="_9A9B49A3-F792-4521-A8B6-3A8763E9C26C">
+          <dmn:text>&gt;= 1000</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_BF75DD13-DA53-41F6-BA09-F2CD2339CA4D">
+          <dmn:text>"MEDIUM_RISK"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_0076D18B-4D86-4889-8859-35E593FD1B12">
+        <dmn:inputEntry id="_DC4F3354-0791-4BCD-ADC2-35E1E00993F0">
+          <dmn:text>&gt;= 500</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C97D3CB0-B262-46BD-816D-5556F3756DE2">
+          <dmn:text>"LOW_RISK"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_F606B8DD-9413-4947-93D1-054B3FBC49C3">
+        <dmn:inputEntry id="_A62C97C8-B3FC-4963-9F81-F7CC9216602A">
+          <dmn:text>&lt; 500</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_D5D4F317-CCED-4AC5-9D50-CF5CB2EF3EF8">
+          <dmn:text>"NO_RISK"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:inputData id="_562FB23C-ED75-43B4-96E3-00952AC82928" name="amount">
+    <dmn:variable id="_D42A4EF2-6AE6-44B4-8F5B-E91AABB53E52" name="amount" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_6D551C7E-1BE4-4A46-8A74-25C3A4F1DB44" name="tax">
+    <dmn:variable id="_41AE20A4-3390-47DC-BDB6-F354320F8597" name="tax" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_1A4FF386-8622-4B9E-BDB1-A3ACB5780282" name="fee">
+    <dmn:variable id="_81B510CE-688B-4290-AD20-65CC7969A610" name="fee" typeRef="number"/>
+  </dmn:inputData>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_0590E4DC-D07D-4439-A3CC-F0EBAD020A64">
+            <kie:width>194.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_947E114B-0A13-43FB-A94B-F0A89358A4F2">
+            <kie:width>50.0</kie:width>
+            <kie:width>183.0</kie:width>
+            <kie:width>137.0</kie:width>
+            <kie:width>157.0</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-_0F4C0B5A-BE18-4E9C-9DA5-7494B1834718" dmnElementRef="_0F4C0B5A-BE18-4E9C-9DA5-7494B1834718" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="456" y="164" width="136" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_9047FD4B-ACE2-4384-BE09-BA285DCA4218" dmnElementRef="_9047FD4B-ACE2-4384-BE09-BA285DCA4218" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="702.94" y="164.21" width="148.39999999999998" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_562FB23C-ED75-43B4-96E3-00952AC82928" dmnElementRef="_562FB23C-ED75-43B4-96E3-00952AC82928" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="153" y="85" width="135" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_6D551C7E-1BE4-4A46-8A74-25C3A4F1DB44" dmnElementRef="_6D551C7E-1BE4-4A46-8A74-25C3A4F1DB44" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="159" y="243" width="134" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_1A4FF386-8622-4B9E-BDB1-A3ACB5780282" dmnElementRef="_1A4FF386-8622-4B9E-BDB1-A3ACB5780282" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="159" y="164" width="135" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_F795EB42-7E5E-4AEE-9E97-85B485530BAA" dmnElementRef="_F795EB42-7E5E-4AEE-9E97-85B485530BAA">
+        <di:waypoint x="294" y="189"/>
+        <di:waypoint x="456" y="189"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_23373775-E97A-4108-920D-1442B40F2DE6" dmnElementRef="_23373775-E97A-4108-920D-1442B40F2DE6">
+        <di:waypoint x="293" y="268"/>
+        <di:waypoint x="456" y="189"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_3685FBB8-F411-472F-B1F0-22A4F61CF071" dmnElementRef="_3685FBB8-F411-472F-B1F0-22A4F61CF071">
+        <di:waypoint x="288" y="110"/>
+        <di:waypoint x="456" y="189"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_1B19F09B-BA84-4447-99C1-1ED438037B91" dmnElementRef="_1B19F09B-BA84-4447-99C1-1ED438037B91">
+        <di:waypoint x="592" y="189"/>
+        <di:waypoint x="702.94" y="189.21"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

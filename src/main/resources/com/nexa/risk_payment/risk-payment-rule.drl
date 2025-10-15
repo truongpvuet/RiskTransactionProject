@@ -1,0 +1,35 @@
+package com.nexa.risk_payment;
+
+// package com.nexa.risk_payment;
+
+// import com.nexa.risk_payment.Payment;
+// import com.nexa.risk_payment.RiskResponse;
+
+// rule "High Risk Payment"
+//     salience 20
+//     no-loop true
+//     when
+//         $payment: Payment( amount - fee - tax > 2000 )
+//     then
+//         insert(new RiskResponse("HIGH_RISK", "Cảnh báo: Thanh toán có rủi ro cao!"));
+//         retract($payment);  // Loại bỏ fact để tránh fire rule thấp hơn
+// end
+
+// rule "Medium Risk Payment"
+//     salience 10
+//     when
+//         $payment: Payment( amount - fee - tax > 1000 )
+//     then
+//         insert(new RiskResponse("MEDIUM_RISK", "Cảnh báo: Thanh toán có rủi ro trung bình!"));
+//         retract($payment);  // Loại bỏ fact để tránh fire rule thấp hơn
+// end
+
+// rule "Low Risk Payment"
+//     salience 5
+//     no-loop true
+//     when
+//         $payment: Payment( amount - fee - tax > 500 )
+//     then
+//         insert(new RiskResponse("LOW_RISK", "Thanh toán an toàn."));
+//         retract($payment);  // Loại bỏ fact để tránh fire rule thấp hơn
+// end
