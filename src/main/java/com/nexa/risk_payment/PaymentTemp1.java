@@ -6,12 +6,33 @@ package com.nexa.risk_payment;
 
 public class PaymentTemp1 implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    public PaymentTemp1() {
-    }
+	private int count;
+	private java.lang.String status;
 
+	public PaymentTemp1() {
+	}
 
+	public int getCount() {
+		return this.count;
+	}
 
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public java.lang.String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(java.lang.String status) {
+		this.status = status;
+	}
+
+	public PaymentTemp1(int count, java.lang.String status) {
+		this.count = count;
+		this.status = status;
+	}
 
 }
