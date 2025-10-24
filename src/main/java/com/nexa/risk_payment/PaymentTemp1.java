@@ -9,7 +9,7 @@ public class PaymentTemp1 implements java.io.Serializable {
 	static final long serialVersionUID = 1L;
 
 	private int count;
-	private java.lang.String status;
+	private java.lang.String transaction_type;
 
 	public PaymentTemp1() {
 	}
@@ -22,17 +22,17 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.count = count;
 	}
 
-	public java.lang.String getStatus() {
-		return this.status;
+	public java.lang.String getTransaction_type() {
+		return this.transaction_type;
 	}
 
-	public void setStatus(java.lang.String status) {
-		this.status = status;
+	public void setTransaction_type(java.lang.String transaction_type) {
+		this.transaction_type = transaction_type;
 	}
 
-	public PaymentTemp1(int count, java.lang.String status) {
+	public PaymentTemp1(int count, java.lang.String transaction_type) {
 		this.count = count;
-		this.status = status;
+		this.transaction_type = transaction_type;
 	}
 
 }
