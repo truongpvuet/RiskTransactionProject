@@ -14,9 +14,9 @@ public class PaymentTemp1 implements java.io.Serializable {
 
 	private java.math.BigDecimal totalAmount;
 
-	private boolean isPushSuccess;
+	private java.math.BigDecimal fee;
 
-	private java.lang.String testPush;
+	private java.math.BigDecimal tax;
 
 	public PaymentTemp1() {
 	}
@@ -45,30 +45,30 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.totalAmount = totalAmount;
 	}
 
-	public boolean isIsPushSuccess() {
-		return this.isPushSuccess;
+	public java.math.BigDecimal getFee() {
+		return this.fee;
 	}
 
-	public void setIsPushSuccess(boolean isPushSuccess) {
-		this.isPushSuccess = isPushSuccess;
+	public void setFee(java.math.BigDecimal fee) {
+		this.fee = fee;
 	}
 
-	public java.lang.String getTestPush() {
-		return this.testPush;
+	public java.math.BigDecimal getTax() {
+		return this.tax;
 	}
 
-	public void setTestPush(java.lang.String testPush) {
-		this.testPush = testPush;
+	public void setTax(java.math.BigDecimal tax) {
+		this.tax = tax;
 	}
 
 	public PaymentTemp1(java.lang.String transaction_type,
 			java.math.BigDecimal amount, java.math.BigDecimal totalAmount,
-			boolean isPushSuccess, java.lang.String testPush) {
+			java.math.BigDecimal fee, java.math.BigDecimal tax) {
 		this.transaction_type = transaction_type;
 		this.amount = amount;
 		this.totalAmount = totalAmount;
-		this.isPushSuccess = isPushSuccess;
-		this.testPush = testPush;
+		this.fee = fee;
+		this.tax = tax;
 	}
 
 }
