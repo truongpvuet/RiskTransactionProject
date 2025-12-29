@@ -13,10 +13,6 @@ public class PaymentTemp1 implements java.io.Serializable {
 
 	private java.math.BigDecimal amount;
 
-	private java.math.BigDecimal fee;
-
-	private java.math.BigDecimal tax;
-
 	public PaymentTemp1() {
 	}
 
@@ -44,30 +40,11 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	public java.math.BigDecimal getFee() {
-		return this.fee;
-	}
-
-	public void setFee(java.math.BigDecimal fee) {
-		this.fee = fee;
-	}
-
-	public java.math.BigDecimal getTax() {
-		return this.tax;
-	}
-
-	public void setTax(java.math.BigDecimal tax) {
-		this.tax = tax;
-	}
-
 	public PaymentTemp1(int count, java.lang.String transaction_type,
-			java.math.BigDecimal amount, java.math.BigDecimal fee,
-			java.math.BigDecimal tax) {
+			java.math.BigDecimal amount) {
 		this.count = count;
 		this.transaction_type = transaction_type;
 		this.amount = amount;
-		this.fee = fee;
-		this.tax = tax;
 	}
 
 }
