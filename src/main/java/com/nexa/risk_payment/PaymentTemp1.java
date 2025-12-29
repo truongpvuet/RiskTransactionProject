@@ -14,6 +14,8 @@ public class PaymentTemp1 implements java.io.Serializable {
 
 	private java.math.BigDecimal totalAmount;
 
+	private boolean isPushSuccess;
+
 	public PaymentTemp1() {
 	}
 
@@ -41,11 +43,21 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.totalAmount = totalAmount;
 	}
 
+	public boolean isIsPushSuccess() {
+		return this.isPushSuccess;
+	}
+
+	public void setIsPushSuccess(boolean isPushSuccess) {
+		this.isPushSuccess = isPushSuccess;
+	}
+
 	public PaymentTemp1(java.lang.String transaction_type,
-			java.math.BigDecimal amount, java.math.BigDecimal totalAmount) {
+			java.math.BigDecimal amount, java.math.BigDecimal totalAmount,
+			boolean isPushSuccess) {
 		this.transaction_type = transaction_type;
 		this.amount = amount;
 		this.totalAmount = totalAmount;
+		this.isPushSuccess = isPushSuccess;
 	}
 
 }
