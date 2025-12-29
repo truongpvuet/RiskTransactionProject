@@ -11,15 +11,11 @@ public class PaymentTemp1 implements java.io.Serializable {
 	private int count;
 	private java.lang.String transaction_type;
 
-	private java.lang.String test;
+	private java.math.BigDecimal amount;
 
-	private java.lang.String test_1;
+	private java.math.BigDecimal fee;
 
-	private boolean test_2;
-
-	private java.lang.String test_3;
-
-	private java.lang.Integer test_4;
+	private java.math.BigDecimal tax;
 
 	public PaymentTemp1() {
 	}
@@ -40,56 +36,38 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.transaction_type = transaction_type;
 	}
 
-	public java.lang.String getTest() {
-		return this.test;
+	public java.math.BigDecimal getAmount() {
+		return this.amount;
 	}
 
-	public void setTest(java.lang.String test) {
-		this.test = test;
+	public void setAmount(java.math.BigDecimal amount) {
+		this.amount = amount;
 	}
 
-	public java.lang.String getTest_1() {
-		return this.test_1;
+	public java.math.BigDecimal getFee() {
+		return this.fee;
 	}
 
-	public void setTest_1(java.lang.String test_1) {
-		this.test_1 = test_1;
+	public void setFee(java.math.BigDecimal fee) {
+		this.fee = fee;
 	}
 
-	public boolean isTest_2() {
-		return this.test_2;
+	public java.math.BigDecimal getTax() {
+		return this.tax;
 	}
 
-	public void setTest_2(boolean test_2) {
-		this.test_2 = test_2;
-	}
-
-	public java.lang.String getTest_3() {
-		return this.test_3;
-	}
-
-	public void setTest_3(java.lang.String test_3) {
-		this.test_3 = test_3;
-	}
-
-	public java.lang.Integer getTest_4() {
-		return this.test_4;
-	}
-
-	public void setTest_4(java.lang.Integer test_4) {
-		this.test_4 = test_4;
+	public void setTax(java.math.BigDecimal tax) {
+		this.tax = tax;
 	}
 
 	public PaymentTemp1(int count, java.lang.String transaction_type,
-			java.lang.String test, java.lang.String test_1, boolean test_2,
-			java.lang.String test_3, java.lang.Integer test_4) {
+			java.math.BigDecimal amount, java.math.BigDecimal fee,
+			java.math.BigDecimal tax) {
 		this.count = count;
 		this.transaction_type = transaction_type;
-		this.test = test;
-		this.test_1 = test_1;
-		this.test_2 = test_2;
-		this.test_3 = test_3;
-		this.test_4 = test_4;
+		this.amount = amount;
+		this.fee = fee;
+		this.tax = tax;
 	}
 
 }
