@@ -16,6 +16,8 @@ public class PaymentTemp1 implements java.io.Serializable {
 
 	private java.math.BigDecimal tax;
 
+	private java.math.BigDecimal discount;
+
 	public PaymentTemp1() {
 	}
 
@@ -51,13 +53,22 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.tax = tax;
 	}
 
+	public java.math.BigDecimal getDiscount() {
+		return this.discount;
+	}
+
+	public void setDiscount(java.math.BigDecimal discount) {
+		this.discount = discount;
+	}
+
 	public PaymentTemp1(java.lang.String transaction_type,
 			java.math.BigDecimal amount, java.math.BigDecimal fee,
-			java.math.BigDecimal tax) {
+			java.math.BigDecimal tax, java.math.BigDecimal discount) {
 		this.transaction_type = transaction_type;
 		this.amount = amount;
 		this.fee = fee;
 		this.tax = tax;
+		this.discount = discount;
 	}
 
 }
