@@ -8,22 +8,11 @@ public class PaymentTemp1 implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	private int count;
 	private java.lang.String transaction_type;
 
 	private java.math.BigDecimal amount;
 
-	private java.math.BigDecimal fee;
-
 	public PaymentTemp1() {
-	}
-
-	public int getCount() {
-		return this.count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
 	}
 
 	public java.lang.String getTransaction_type() {
@@ -42,20 +31,10 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	public java.math.BigDecimal getFee() {
-		return this.fee;
-	}
-
-	public void setFee(java.math.BigDecimal fee) {
-		this.fee = fee;
-	}
-
-	public PaymentTemp1(int count, java.lang.String transaction_type,
-			java.math.BigDecimal amount, java.math.BigDecimal fee) {
-		this.count = count;
+	public PaymentTemp1(java.lang.String transaction_type,
+			java.math.BigDecimal amount) {
 		this.transaction_type = transaction_type;
 		this.amount = amount;
-		this.fee = fee;
 	}
 
 }
