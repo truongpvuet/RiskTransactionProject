@@ -16,6 +16,8 @@ public class PaymentTemp1 implements java.io.Serializable {
 
 	private boolean isPushSuccess;
 
+	private java.lang.String testPush;
+
 	public PaymentTemp1() {
 	}
 
@@ -51,13 +53,22 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.isPushSuccess = isPushSuccess;
 	}
 
+	public java.lang.String getTestPush() {
+		return this.testPush;
+	}
+
+	public void setTestPush(java.lang.String testPush) {
+		this.testPush = testPush;
+	}
+
 	public PaymentTemp1(java.lang.String transaction_type,
 			java.math.BigDecimal amount, java.math.BigDecimal totalAmount,
-			boolean isPushSuccess) {
+			boolean isPushSuccess, java.lang.String testPush) {
 		this.transaction_type = transaction_type;
 		this.amount = amount;
 		this.totalAmount = totalAmount;
 		this.isPushSuccess = isPushSuccess;
+		this.testPush = testPush;
 	}
 
 }
