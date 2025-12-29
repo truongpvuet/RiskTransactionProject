@@ -17,6 +17,8 @@ public class PaymentTemp1 implements java.io.Serializable {
 
 	private boolean test_2;
 
+	private java.lang.String test_3;
+
 	public PaymentTemp1() {
 	}
 
@@ -60,13 +62,23 @@ public class PaymentTemp1 implements java.io.Serializable {
 		this.test_2 = test_2;
 	}
 
+	public java.lang.String getTest_3() {
+		return this.test_3;
+	}
+
+	public void setTest_3(java.lang.String test_3) {
+		this.test_3 = test_3;
+	}
+
 	public PaymentTemp1(int count, java.lang.String transaction_type,
-			java.lang.String test, java.lang.String test_1, boolean test_2) {
+			java.lang.String test, java.lang.String test_1, boolean test_2,
+			java.lang.String test_3) {
 		this.count = count;
 		this.transaction_type = transaction_type;
 		this.test = test;
 		this.test_1 = test_1;
 		this.test_2 = test_2;
+		this.test_3 = test_3;
 	}
 
 }
